@@ -1,26 +1,28 @@
-import React, { useState, useRef,} from "react";
-
+import React, { useState, useRef, } from "react";
+import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 
 import People from "../../assents/people.svg"
 import Arrow from "../../assents/arrow.svg"
 
+import H1 from '../../components/Title'
+import ContainerItens from "../../components/containerItens";
+import Button from "../../components/Button";
+
 
 import {
     Container,
     Image,
-    H1,
-    ContainerItens,
     ImputLabel,
     Input,
-    Button,
 } from "./styles"
-import { wait } from "@testing-library/user-event/dist/utils";
 // Saber cosumir api utilizando AXIOS
 // O Poder do "JSX" 
 function App() {
-
     const [users, setUsers] = useState([]);
+    const navigate = useNavigate()
+
+
     const inputName = useRef()
     const inputAge = useRef()
 
@@ -35,14 +37,17 @@ function App() {
 
         setUsers([...users, newUser]);
 
+        navigate("/usuarios");
+
     }
 
-  
+
     // REACT HOOK => useEffect (Efeito Colateral)
     // A minha aplicação inicia (A pagina carregou, useEffect é chamado)
     // Quando um estado que esta no Array de dependencia do useEffect é alterado
 
-       return (
+    // PROPS => PROPRIEDADES
+    return (
         <Container>
             <Image alt="logo-image" src={People} />
             <ContainerItens>
@@ -55,11 +60,9 @@ function App() {
                 <Input ref={inputAge} placeholder="Idade" />
 
                 <Button onClick={addnewUser}>
-                    Cadastrar <img alt="seta" src={Arrow} />
+                    <img alt="seta" src={Arrow} />
                 </Button>
-
             </ContainerItens>
-
         </Container>
     )
 }

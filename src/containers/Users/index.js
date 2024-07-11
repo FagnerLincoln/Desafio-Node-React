@@ -1,25 +1,28 @@
 import React, { useState, useEffect } from "react";
-
+import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 
 import Avatar from "../../assents/avatar.svg"
 import Arrow from "../../assents/arrow.svg"
 import Trash from "../../assents/trash.svg"
 
-import {
+import { H1 } from "../../components/Title/styles";
+import ContainerItens from "../../components/containerItens";
+import Button from "../../components/Button";
+
+ import {
     Container,
     Image,
-    H1,
-    ContainerItens,
-    Button,
     User,
 } from "./styles"
+
 // Saber cosumir api utilizando AXIOS
 // O Poder do "JSX" 
 function Users() {
-
     const [users, setUsers] = useState([]);
-
+    const navigate = useNavigate();
+    console.log(navigate)
+    
     //Spreed Operaitor"..." : Organiza esparrama dentro de um Array. Ex: abaixo "tres pontos"
 
     useEffect(() => {
@@ -41,11 +44,16 @@ function Users() {
         await axios.delete(`http://localhost:3001/users/${userId}`)
         const newUsers = users.filter((user) => user.id !== userId);
         setUsers(newUsers);
+
+  function goBackPage(){
+    navigate.push("/");
+    
+}
     }
     return (
         <Container>
             <Image alt="logo-image" src={Avatar} />
-            <ContainerItens>
+            <ContainerItens isBlur={true}>
                 <H1>Usuários</H1>
 
                 <ul>
@@ -58,9 +66,9 @@ function Users() {
                         </User>
                     ))}
                 </ul>
-
-                <Button>
-                    <img alt="seta" src={Arrow} /> Voltar
+                       
+                <Button isBack={true} onClick={() => navigate(-1)}>
+                          <img alt="seta" src={Arrow} />Voltar
                 </Button>
 
             </ContainerItens>

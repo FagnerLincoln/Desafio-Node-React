@@ -14,37 +14,8 @@ background-size: cover;
 
 `;
 export const Image = styled.img`
-margin: 30px;
+margin-top: 30px;
 
-`;
-
-export const H1 = styled.h1`
-font-style: normal;
-font-size: 34px;
-font-weight: bold;
-line-height: 40px;
-text-align: center;
-color: #ffffff;
-margin-bottom: 40px;
-
-
-`;
-
-export const ContainerItens = styled.div`
-/*width: 414px;
-height: 645px;
-top: 251px;
-gap: 0px;
-opacity: 0px;*/
-background: linear-gradient(157.44deg,
-rgba(255, 255, 255, 0.6) 0.84%, 
-rgba(255, 255, 255, 0.6) 0.85%, 
-rgba(255, 255, 255, 0.15) 100%);
-border-radius: 61px 61px 0px 0px;
-padding: 50px 36px;
-display: flex;
-flex-direction: column;
-height: 100vh;
 `;
 
 export const ImputLabel = styled.p`
@@ -78,39 +49,7 @@ text-align: left;
 
 `;
 
-export const Button = styled.button`
-background: rgba(0, 0, 0, 0.8);
-width: 342px;
-height: 74px;
-margin-top: 130px;
 
-gap: 0px;
-border-radius: 14px;
-opacity: 0px;
-border: none;
-
-width: Hug (97px)px;
-height: Hug (28px)px;
-top: 23px;
-left: 118px;
-gap: 14px;
-line-height: 28px;
-color: #ffffff;
-cursor: pointer;
-
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 20px;
-
-&:hover{
-    opacity: 0.8;
-}
-&:active{
-opacity: 0.5;
-}
-
-`
 
 
 
