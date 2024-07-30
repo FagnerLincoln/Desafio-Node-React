@@ -1,36 +1,27 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-export const Button = styled.button`
+export const Button = styled(Link)`
+background: rgba(217, 56, 86, 1);
 width: 342px;
-height: 74px;
-margin-top: 130px;
+height: 68px;
+padding: 0px 113px 0px 113px;
+align-content: center;
 
-
-background: ${props => props.isBack ? 'transparent ' : 'rgba(0, 0, 0, 0.8)'};
+border: none;
 border-radius: 14px;
-border: ${props => props.isBack ? '1px solid #ffffff' : 'none'};
-
-font-style: normal;
-font-weight: bold;
 font-size: 17px;
-line-height: 28px;
-
+font-weight: 900;
+line-height: 2.5px;
+text-align: center;
 color: #ffffff;
 cursor: pointer;
-
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 20px;
+margin-top: 90px;
 
 &:hover{
-    opacity: 0.8;
+    opacity: 0.6;
 }
 &:active{
-opacity: 0.5;
+    opacity: 0.9;
 }
-
-img{
-    transform: ${props => props.isBack && 'rotateY(180deg)'};
-}
-`
+`;

@@ -1,69 +1,58 @@
-import React, { useState, useRef, } from "react";
+import React, { useState, useRef,} from "react"
 import { useNavigate } from 'react-router-dom';
-import axios from "axios";
 
-import People from "../../assents/people.svg"
-import Arrow from "../../assents/arrow.svg"
+import axios from "axios"
+import bruger1 from '../../assents/burger1.svg';
 
-import H1 from '../../components/Title'
-import ContainerItens from "../../components/containerItens";
-import Button from "../../components/Button";
-
+import { H1 } from '../../components/Title/styles';
+import Button from '../../components/Button';
 
 import {
     Container,
     Image,
-    ImputLabel,
+    InputLabel,
+    ContainerItens,
     Input,
-} from "./styles"
-// Saber cosumir api utilizando AXIOS
-// O Poder do "JSX" 
+        } from "./styles";
+
 function App() {
-    const [users, setUsers] = useState([]);
-    const navigate = useNavigate()
+    const [clientes, setClientes] = useState([]);
+    const navigate = useNavigate(); 
 
+    const Inputpedido = useRef();
+    const Inputnamecliente = useRef();
 
-    const inputName = useRef()
-    const inputAge = useRef()
+    async function AddNovoPedido() {
 
-    //Spreed Operaitor"..." : Organiza esparrama dentro de um Array. Ex: abaixo "tres pontos"
-
-    async function addnewUser() {
-
-        const { data: newUser } = await axios.post("http://localhost:3001/users", {
-            name: inputName.current.value,
-            age: inputAge.current.value,
+        const {data: newClientes} = await axios.post("http://localhost:3001/clientes/", {
+            pedido: Inputpedido.current.value, namecliente:
+            Inputnamecliente.current.value
         });
+          setClientes([...clientes, newClientes]);
+          }
 
-        setUsers([...users, newUser]);
+          navigate("/pedidos");
 
-        navigate("/usuarios");
-
-    }
-
-
-    // REACT HOOK => useEffect (Efeito Colateral)
-    // A minha aplicação inicia (A pagina carregou, useEffect é chamado)
-    // Quando um estado que esta no Array de dependencia do useEffect é alterado
-
-    // PROPS => PROPRIEDADES
-    return (
+          return (
         <Container>
-            <Image alt="logo-image" src={People} />
+            <Image alt="logo-imagem" src={bruger1} />
+
             <ContainerItens>
-                <H1>Olá!</H1>
+                <H1>Faça Seu Pedido!</H1>
 
-                <ImputLabel>Nome</ImputLabel>
-                <Input ref={inputName} placeholder="Nome" />
+                <InputLabel>Pedido</InputLabel>
+                <Input ref={Inputpedido} placeholder="1Coca-Cola,1-XSalada" />
 
-                <ImputLabel>Idade</ImputLabel>
-                <Input ref={inputAge} placeholder="Idade" />
+                <InputLabel>Nome do Cliente</InputLabel>
+                <Input ref={Inputnamecliente} placeholder="Steve Jobs" />
 
-                <Button onClick={addnewUser}>
-                    <img alt="seta" src={Arrow} />
+                <Button to="/pedidos" onClick={AddNovoPedido}>
+                    Novo Pedido
                 </Button>
-            </ContainerItens>
+            </ContainerItens>   
+
         </Container>
-    )
+    );
 }
-export default App 
+
+export default App;

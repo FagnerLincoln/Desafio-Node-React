@@ -1,12 +1,11 @@
 import styled from "styled-components";
 
 export const H1 = styled.h1`
-font-style: normal;
-font-size: 34px;
-font-weight: bold;
-line-height: 40px;
-text-align: center;
 color: #ffffff;
-margin-bottom: 40px;
+font-size: 28px;
+font-weight: 700;
+line-height: 32.81px;
+text-align: center;
+margin-bottom:50px;
 
 `;
