@@ -12,7 +12,7 @@
     "modules": "^0.4.0",
     "modulo": "^0.0.3",
     "modulos": "^1.0.0",
-    "node": "^20.14.0",
+    "node": "^20.16.0",
     "node.js": "^0.0.1-security",
     "plugin": "^0.3.3",
     "react": "^18.3.1",
