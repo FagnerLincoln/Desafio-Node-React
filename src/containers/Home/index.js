@@ -27,7 +27,8 @@ function App() {
         const {data: newClientes} = await axios.post("http://localhost:3001/clientes/", {
             pedido: Inputpedido.current.value, namecliente:
             Inputnamecliente.current.value
-        });
+                    });
+                    
           setClientes([...clientes, newClientes]);
           }
 
