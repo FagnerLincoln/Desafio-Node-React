@@ -1,8 +1,7 @@
-import React, { useState, useRef,} from "react"
+import React, { useState, useRef } from "react";
 import { useNavigate } from 'react-router-dom';
-
-import axios from "axios"
-import bruger1 from '../../assents/burger1.svg';
+import axios from "axios";
+import burger1 from '../../assents/burger1.svg';
 
 import { H1 } from '../../components/Title/styles';
 import Button from '../../components/Button';
@@ -13,47 +12,50 @@ import {
     InputLabel,
     ContainerItens,
     Input,
-        } from "./styles";
+} from "./styles";
 
-function App() {
+function Home() {
     const [clientes, setClientes] = useState([]);
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     const Inputpedido = useRef();
     const Inputnamecliente = useRef();
 
     async function AddNovoPedido() {
+        try {
+            const { data: newOrder } = await axios.post("http://localhost:3001/orders", {
+                name: Inputnamecliente.current.value,
+                pedido: Inputpedido.current.value
+            });
+            
+            console.log(newOrder)
+            
+            setClientes([...clientes, newOrder]);
+            navigate("/pedidos");
+        } catch (error) {
+            console.error("Erro ao adicionar pedido:", error);
+        }
+    }
 
-        const {data: newClientes} = await axios.post("http://localhost:3001/clientes/", {
-            pedido: Inputpedido.current.value, namecliente:
-            Inputnamecliente.current.value
-                    });
-                    
-          setClientes([...clientes, newClientes]);
-          }
-
-          navigate("/pedidos");
-
-          return (
+    return (
         <Container>
-            <Image alt="logo-imagem" src={bruger1} />
+            <Image alt="logo-imagem" src={burger1} />
 
             <ContainerItens>
                 <H1>Faça Seu Pedido!</H1>
 
                 <InputLabel>Pedido</InputLabel>
-                <Input ref={Inputpedido} placeholder="1Coca-Cola,1-XSalada" />
+                <Input ref={Inputpedido} placeholder="1 Coca-Cola, 1 X-Salada" />
 
                 <InputLabel>Nome do Cliente</InputLabel>
                 <Input ref={Inputnamecliente} placeholder="Steve Jobs" />
 
-                <Button to="/pedidos" onClick={AddNovoPedido}>
+                <Button onClick={AddNovoPedido}>
                     Novo Pedido
                 </Button>
-            </ContainerItens>   
-
+            </ContainerItens>
         </Container>
     );
 }
 
-export default App;
+export default Home;

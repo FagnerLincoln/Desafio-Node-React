@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import Background1 from '../../assents/Background1.svg';
+import background2 from '../../assents/Background2.svg';
 
 
 export const Container = styled.div`
-background: url("${Background1}");
+background: url("${background2}");
 background-size: cover;
 
 display: flex;
@@ -64,4 +64,4 @@ button
     
 }
 
-`       
+`           
